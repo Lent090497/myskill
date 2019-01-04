@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="MainMaster" %>
+
+<%-- DXCOMMENT: Page Main.master is a master page that contains central area layout --%>
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+    <dx:ASPxSplitter ID="ContentSplitter" runat="server" Width="100%" Height="100%">
+                <ClientSideEvents PaneResized="function(s, e) { 
+            if(window.ASPxGridView1 && e.pane.name == 'ContentCenter')
+                ASPxGridView1.SetHeight(e.pane.GetClientHeight());
+            }" />
+                        <Styles>
+            <Pane>
+                <Paddings Padding="0px" />
+                <Border BorderWidth="0px" />
+            </Pane>
+        </Styles>
+        <Panes>
+            <dx:SplitterPane Name="ContentLeft" ShowCollapseBackwardButton="True" Size="200px" MinSize="150px">
+                <PaneStyle CssClass="leftPane">
+<Paddings Padding="1px"></Paddings>
+                </PaneStyle>
+                <PaneStyle>
+                    <Paddings Padding="1px" />
+                </PaneStyle>
+                <ContentCollection>
+                    <dx:SplitterContentControl>
+                        <div class="leftPanel">
+                            <%-- DXCOMMENT: Configure the left panel's ASPxNavBar --%>
+<dx:ASPxNavBar ID="ASPxNavBar1" runat="server" AutoCollapse="true" EnableAnimation="true" Width="100%">
+                                <Border BorderWidth="1px" />
+                                <Paddings Padding="0px" />
+            <Groups>
+                <dx:NavBarGroup Name="dm" Text="Danh Mục" ToolTip="Danh mục">
+                    <Items>
+                        <dx:NavBarItem Name="dst" Text="Danh Sách Tour" NavigateUrl="~/Content/DanhSachTour.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Name="dsttn" Text="Danh Sách Tour Trong Nước" NavigateUrl="~/Content/DanhSachTourTrongNuoc.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Name="dstnn" Text="Danh Sách Tour Ngoài Nước" NavigateUrl="~/Content/DSTourNuocNgoai.aspx">
+                        </dx:NavBarItem>
+                    </Items>
+                </dx:NavBarGroup>
+                <dx:NavBarGroup Name="chucnang" Text="Chức Năng">
+                    <Items>
+                        <dx:NavBarItem Name="dattour" Text="Đặt Tour" NavigateUrl="~/Content/ql_tour/Dattour.aspx">
+                        </dx:NavBarItem>
+                    </Items>
+                </dx:NavBarGroup>
+                <dx:NavBarGroup Name="ql" Text="Quản Lý">
+                    <Items>
+                        <dx:NavBarItem Text="Quản Lý Nhân Viên" Name="btn_qlnv" NavigateUrl="~/Content/DSNhanVien.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Text="Quản Lý Tour" NavigateUrl="~/Content/ql_tour/ql_tour.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Text="Chi tiết tour" NavigateUrl="~/Content/ql_tour/Themchitiettour.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Text="Quản Lý Người Dùng" NavigateUrl="~/Content/quanlynguoidung/nguoidung.aspx">
+                        </dx:NavBarItem>
+                        <dx:NavBarItem Text="Quản Lý Nhóm Người Dùng" NavigateUrl="~/Content/quanLyNhomNguoiDung/nhomnguoidung.aspx">
+                        </dx:NavBarItem>
+                    </Items>
+                </dx:NavBarGroup>
+                <dx:NavBarGroup Name="ht" Text="Hệ Thống">
+                    <Items>
+                        <dx:NavBarItem Name="login" NavigateUrl="~/Account/Login.aspx" Text="Đăng Nhập">
+                        </dx:NavBarItem>
+                    </Items>
+                </dx:NavBarGroup>
+                <dx:NavBarGroup Name="help" Text="Trợ Giúp">
+                </dx:NavBarGroup>
+            </Groups>
+        </dx:ASPxNavBar>
+
+                        </div>
+                    </dx:SplitterContentControl>
+                </ContentCollection>
+            </dx:SplitterPane>
+            <dx:SplitterPane Name="ContentCenter" ScrollBars="Auto">
+                <PaneStyle CssClass="contentPane"></PaneStyle>
+                <Separator Visible="True">
+                    <SeparatorStyle>
+                        <Border BorderWidth="1px" />
+                        <BorderTop BorderWidth="0px" />
+                    </SeparatorStyle>
+                </Separator>
+                <ContentCollection>
+                    <dx:SplitterContentControl>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+                            <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="MaCT">
+                                <Columns>
+                                    <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                    </dx:GridViewCommandColumn>
+                                    <dx:GridViewDataTextColumn FieldName="MaCT" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="1">
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="Hinh" ShowInCustomizationForm="True" VisibleIndex="2">
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataDateColumn FieldName="NgayKhoiHanh" ShowInCustomizationForm="True" VisibleIndex="3">
+                                    </dx:GridViewDataDateColumn>
+                                    <dx:GridViewDataTextColumn FieldName="LichTrinh" ShowInCustomizationForm="True" VisibleIndex="4">
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="MaTour" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="5">
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
+                            </dx:ASPxGridView>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:QL_DuLichConnectionString %>" DeleteCommand="DELETE FROM ChiTiet WHERE (MaCT = @MaCt)" InsertCommand="INSERT INTO ChiTiet(MaCT, Hinh, NgayKhoiHanh, LichTrinh, MaTour) VALUES (@MaCT, @Hinh, @NgayKhoiHanh, @LichTrinh, @MaTour)" SelectCommand="SELECT ChiTiet.MaCT, ChiTiet.Hinh, ChiTiet.NgayKhoiHanh, ChiTiet.LichTrinh, Tour.MaTour FROM ChiTiet INNER JOIN Tour ON ChiTiet.MaTour = Tour.MaTour where ChiTiet.MaTour=@MaTour" UpdateCommand="UPDATE ChiTiet SET MaCT = @MaCT, Hinh = @Hinh, NgayKhoiHanh = @NgayKhoiHanh, MaTour = @MaTour, LichTrinh = @LichTrinh">
+                                <DeleteParameters>
+                                    <asp:Parameter Name="MaCt" />
+                                </DeleteParameters>
+                                <InsertParameters>
+                                    <asp:Parameter Name="MaCT" />
+                                    <asp:Parameter Name="Hinh" />
+                                    <asp:Parameter Name="NgayKhoiHanh" />
+                                    <asp:Parameter Name="LichTrinh" />
+                                    <asp:Parameter Name="MaTour" />
+                                </InsertParameters>
+                                <SelectParameters>
+                                    <asp:QueryStringParameter DefaultValue="" Name="MaTour" QueryStringField="id" />
+                                </SelectParameters>
+                                <UpdateParameters>
+                                    <asp:Parameter Name="MaCT" />
+                                    <asp:Parameter Name="Hinh" />
+                                    <asp:Parameter Name="NgayKhoiHanh" />
+                                    <asp:Parameter Name="MaTour" />
+                                    <asp:Parameter Name="LichTrinh" />
+                                </UpdateParameters>
+                            </asp:SqlDataSource>
+                        </asp:ContentPlaceHolder>
+                    </dx:SplitterContentControl>
+                </ContentCollection>
+            </dx:SplitterPane>
+            
+        </Panes>
+                <Border BorderWidth="1px" />
+    </dx:ASPxSplitter>
+    
+<%-- DXCOMMENT: Configure a datasource for the left panel's ASPxNavBar --%>
+<asp:XmlDataSource ID="XmlDataSourceLeft" runat="server" DataFile="~/App_Data/SideMenu.xml"
+    XPath="/menu/*"></asp:XmlDataSource>
+
+    
+</asp:Content>

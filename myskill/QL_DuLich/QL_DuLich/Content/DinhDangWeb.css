@@ -1,0 +1,102 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+#all{
+    margin-left:55px;
+    width:1200px;
+    height:auto;
+}
+#logo{
+    width:70%;
+    height:auto ;
+    float:left;   
+}
+#login{
+     width:30%;
+    height:auto;   
+}
+#banner1{
+     width:100%;
+    height:40px;
+    float:left;    
+}
+
+#banner{
+    width:1200px;
+    height:auto;
+    background-color:#808080;      
+}
+#menuchinh{
+     width:100%;
+    height:30px;  
+    float:left;
+}
+#menuchinh ul {
+    margin-top:12px;
+    list-style-type:none;
+    list-style:none;
+    text-align:center;
+    margin-left:300px;
+}
+#menuchinh ul li {
+    float: left;
+    border-right:1px #FFF solid;
+    line-height:15px;
+    width:auto;
+    text-align:center;
+    margin-bottom:auto;
+    margin-left:10px;
+}
+#menuchinh ul li a {
+    text-decoration:none;
+}
+#menuchinh ul li a:hover {
+    color:yellow;
+    display:block;
+}
+#middle
+{
+    width:1200px;
+    height:auto;
+   
+}
+#middle1{
+    width:1200px;
+    height:auto;
+}
+#middle11{
+    width:500px;
+    height:auto;
+    float:left;
+}
+#middle12{
+    width:500px;
+    height:auto;
+}
+#middle2
+{
+    width:1000px;
+    height:auto;
+}
+#middle3
+{
+    width:1000px;
+    height:auto;
+}
+#menu{
+    width:300px;
+    height:auto;
+    float:left;
+}
+#content{
+    width:700px;
+    height:auto;
+}
+#footer
+{
+    width:1200px;
+    height:100px;
+    background-image:url(http://localhost:51745/Content/Images/BlackGlassHeader.jpg);
+}
+

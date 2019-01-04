@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item Text="Danh Sách Nhân Viên" NavigateUrl="#"  />
+  <item Text="Thêm" NavigateUrl="#" />
+  <item Text="Xóa" NavigateUrl="#"  />
+  <item Text="Lưu" NavigateUrl="#"  />
+  <item Text="Inport" NavigateUrl="#"  />
+  <item Text="Export" NavigateUrl="#"  />
+</items>

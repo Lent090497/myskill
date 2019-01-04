@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Trangchu.master.cs" Inherits="Content_ql_tour_Trangchu" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="../../js/jquery-1.9.1.min.js"></script>
+    <script src="../../js/jssor.slider.min.js"></script>
+    <link href="../DinhDangWeb.css" rel="stylesheet" />
+     
+    <style type="text/css">
+        .auto-style1 {
+            width: 876px;
+        }
+    </style>
+     
+</head>
+<body>
+    <!-- Jssor Slider Begin -->
+    <script>
+        jQuery(document).ready(function ($) {
+            var options = {
+                $AutoPlay: 1,                                   //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+            };
+
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+        });
+    </script>
+    <form id="form1" runat="server">
+    <div id="all">
+          
+           <table style="width:100%;">
+               <tr>
+                   <td class="auto-style1">&nbsp;
+
+                       <asp:ImageButton ID="ImageButton6" runat="server" Height="30px" ImageUrl="~/Content/Images/LOGO.png" />
+
+                   </td>
+                   <td>&nbsp;
+                        <asp:DropDownList ID="cbo_ds" runat="server" DataSourceID="SqlDataSource1" DataTextField="TenTour" DataValueField="MaTour">
+           </asp:DropDownList>
+               <asp:ImageButton ID="btn_tim_kiem" runat="server" Height="20px" ImageUrl="~/Content/Images/search.png" OnClick="btn_tim_kiem_Click" />
+           
+           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:QL_DuLichConnectionString %>" SelectCommand="SELECT MaTour, TenTour FROM Tour"></asp:SqlDataSource>
+           
+                   </td>
+               </tr>
+           </table>
+           
+           <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width:1200px;
+        height:300px">
+        <!-- Slides Container -->
+        <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 1200px; height: 300px; overflow: hidden;">
+           <div> <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Content/Images/banner_cuba.jpg" Width="1200px" Height="300px"  /></div>
+            <div> <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Content/Images/banner_phu_quoc.jpg" Width="1200px" Height="300px"  /></div>
+            <div> <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/Content/Images/American.jpg" Width="1200px" Height="300px" /></div>
+            <div>
+                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Content/Images/banner.jpg" Width="1200px" Height="300px" /></div>
+            <div>
+                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Content/Images/baner.png" Width="1200px" Height="300px" /></div>
+        </div>
+    </div>
+            <div id="menuchinh" style="background-color:#808080">
+                 <ul>
+                <li><a href="Dattour.aspx">Trang chủ</a></li>
+                <li><a href="Danhsachtourtrongnuoc.aspx">Tour trong nước</a></li>
+                <li><a href="Danhsachtourngoainuoc.aspx">Tour ngoài nước</a></li>
+                <li><a href="Huytour.aspx">Xem thông tin đặt tour</a></li>
+            </ul>
+            </div>
+    <!-- Jssor Slider End -->
+        <div id="middle">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">           
+                    
+     </asp:ContentPlaceHolder>
+        </div>
+       
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_DuLich" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=NGUYENLE;Initial Catalog=QL_DuLich;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_DuLichConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ChiTiet" Member="ChiTiets">
+    <Type Name="ChiTiet">
+      <Column Name="MaCT" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Hinh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NgayKhoiHanh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaTour" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LichTrinh" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="Tour_ChiTiet" Member="Tour" ThisKey="MaTour" OtherKey="MaTour" Type="Tour" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThongTinDKTour" Member="ThongTinDKTours">
+    <Type Name="ThongTinDKTour">
+      <Column Name="NgayDat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiLon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoTreEm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaTour" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="ThongTinDKTour_KhachHang" Member="KhachHangs" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" />
+      <Association Name="Tour_ThongTinDKTour" Member="Tour" ThisKey="MaTour" OtherKey="MaTour" Type="Tour" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="MaKH" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Diachi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ThongTinDKTour_KhachHang" Member="ThongTinDKTour" ThisKey="MaKH" OtherKey="MaKH" Type="ThongTinDKTour" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NguoiDung" Member="NguoiDungs">
+    <Type Name="NguoiDung">
+      <Column Name="TenDN" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="HoatDong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MaNh" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="NguoiDung_NhanVien" Member="NhanViens" ThisKey="TenDN" OtherKey="TenDN" Type="NhanVien" />
+      <Association Name="NhomNguoiDung_NguoiDung" Member="NhomNguoiDung" ThisKey="MaNh" OtherKey="MaNhom" Type="NhomNguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="MaNV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenNV" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NgSinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NChar(5)" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="Dchi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="TenDN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="NhanVien_Tour" Member="Tours" ThisKey="MaNV" OtherKey="MaNV" Type="Tour" />
+      <Association Name="NguoiDung_NhanVien" Member="NguoiDung" ThisKey="TenDN" OtherKey="TenDN" Type="NguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhomNguoiDung" Member="NhomNguoiDungs">
+    <Type Name="NhomNguoiDung">
+      <Column Name="MaNhom" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="IsAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="NhomNguoiDung_NguoiDung" Member="NguoiDungs" ThisKey="MaNhom" OtherKey="MaNh" Type="NguoiDung" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tour" Member="Tours">
+    <Type Name="Tour">
+      <Column Name="MaTour" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTour" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="LoaiTour" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoNgay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GiaTour" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaNV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tour_ChiTiet" Member="ChiTiets" ThisKey="MaTour" OtherKey="MaTour" Type="ChiTiet" />
+      <Association Name="Tour_ThongTinDKTour" Member="ThongTinDKTours" ThisKey="MaTour" OtherKey="MaTour" Type="ThongTinDKTour" />
+      <Association Name="NhanVien_Tour" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
